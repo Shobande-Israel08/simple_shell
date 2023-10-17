@@ -13,7 +13,7 @@ int interactive(info_l *info)
 /**
  * l_delim - It checks if character is a delimeter
  * @c: Is the char to be checked from the function
- *@delim:the string delimeter 
+ *@delim:the string delimeter
  * Return: 1 if true, 0 if false
  */
 

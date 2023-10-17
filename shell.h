@@ -1,17 +1,6 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <limits.h>
-#include <fcntl.h>
-#include <errno.h>
-
 
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
@@ -33,6 +22,17 @@
 
 #define HIST_FILE	".simple_shell_history"
 #define HIST_MAX	4096
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <fcntl.h>
+#include <errno.h>
 
 extern char **environ;
 
@@ -60,7 +60,7 @@ typedef struct mystr
  * @line_count: the error count
  * @err_num: exit()s error code
  * @linecount_flag: if on count this line of input
- * @fname: the filename program 
+ * @fname: the filename program
  * @env: linked list local copy of environ
  * @environ: custom modified copy of environ from LL environ
  * @history: the node history
@@ -89,8 +89,8 @@ typedef struct passinfo
 	char **environ;
 	int env_changed;
 	int status;
-	char **cmd_buf; 
-	int cmd_buf_type; 
+	char **cmd_buf;
+	int cmd_buf_type;
 	int readfd;
 	int histcount;
 } info_l;

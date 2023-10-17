@@ -1,4 +1,3 @@
-getLine.c
 #include "shell.h"
 
 /**
@@ -15,7 +14,7 @@ ssize_t input_buf(info_l *info, char **buf, size_t *len)
 
 	if (!*len)
 	{
-		
+
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
@@ -59,9 +58,9 @@ ssize_t get_input(info_l *info)
 	r = input_buf(info, &buf, &len);
 	if (r == -1)
 		return (-1);
-	if (len) 
+	if (len)
 	{
-		j = i; 
+		j = i;
 		p = buf + i;
 
 		check_chain(info, buf, &j, i, len);
@@ -79,12 +78,12 @@ ssize_t get_input(info_l *info)
 			info->cmd_buf_type = CMD_NORM;
 		}
 
-		*buf_p = p; 
-		return (_strlen(p)); 
+		*buf_p = p;
+		return (_strlen(p));
 	}
 
-	*buf_p = buf; 
-	return (r); 
+	*buf_p = buf;
+	return (r);
 }
 
 /**
@@ -92,7 +91,6 @@ ssize_t get_input(info_l *info)
  * @info: parameter structures
  * @buf: buffer
  * @i: size
- *
  * Return: r
  */
 ssize_t read_buf(info_t *info, char *buf, size_t *i)
@@ -135,7 +133,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	c = _strchr(buf + i, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len;
 	new_p = _realloc(p, s, s ? s + k : k + 1);
-	if (!new_p) /* MALLOC FAILURE! */
+	if (!new_p)
 		return (p ? free(p), -1 : -1);
 
 	if (s)

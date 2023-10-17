@@ -1,4 +1,3 @@
-fault1.c
 #include "shell.h"
 
 /**
@@ -23,7 +22,6 @@ void eputs1(char *str)
 /**
  * _eputchar - input the character c to stderr
  * @c: The character to output
- *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
@@ -47,9 +45,9 @@ int _eputchar(char c)
  * _putfd - input the character c to given fd
  * @c: The character to output
  * @fd: The file descriptor to input to
- * Return: On success 1.
+ * Return:On success 1.
  * On error, -1 is returned, and errno is set appropriately.
- *by nexttosho
+ * by nexttosho
  */
 
 int _putfd(char c, int fd)
@@ -69,12 +67,11 @@ int _putfd(char c, int fd)
 
 /**
  * _putsfd - outputs an input string
- * @str: the string to output
- * @fd: the file descriptor to input to
- *
- * Return: the number of chars put
+ * @str:the string to output
+ * @fd:the file descriptor to input to
+ * Return:the number of chars put
  */
- 
+
 int _putsfd(char *str, int fd)
 {
 	int i = 0;

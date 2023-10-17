@@ -47,9 +47,9 @@ int hsh(info_l *info, char **av)
  * find_builtin - locates a built-in command
  * @info: the parameter & return info structures
  * Return: -1 if built-in not found,
- * 	0 if built-in executed successfully,
- * 	1 if built-in found but not successful,
- * 	2 if built-in signals exit()
+ * 0 if built-in executed successfully,
+ * 1 if built-in found but not successful,
+ * 2 if built-in signals exit()
  */
 int find_builtin(info_l *info)
 {
@@ -122,7 +122,7 @@ void find_cmd(info_l *info)
  * @info: the parameter & return info structures
  * Return: void
  */
- 
+
 void fork_cmd(info_l *info)
 {
 	pid_t child_pid;
@@ -130,7 +130,7 @@ void fork_cmd(info_l *info)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		
+
 		perror("Error:");
 		return;
 	}
@@ -143,7 +143,7 @@ void fork_cmd(info_l *info)
 				exit(126);
 			exit(1);
 		}
-		
+
 	}
 	else
 	{

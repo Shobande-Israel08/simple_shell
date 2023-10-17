@@ -1,4 +1,3 @@
-envi.c
 #include "shell.h"
 
 /**
@@ -7,6 +6,7 @@ envi.c
  * Used to maintain constant function prototype.
  * Return: Always 0
  */
+
 int myenv1(info_l *info)
 {
 	print_list_str(info->env);
@@ -78,11 +78,12 @@ int myunsetenv1(info_l *info)
 
 /**
  * populate_env_list - populates environ linked list
- * @info: Structure possesing potential arguments. Used to maintain
- *          constant function prototype.
+ * @info: Structure possesing potential arguments and
+ * Used to maintain constant function prototype.
  * Return: Always 0
  * by nexttosho
  */
+
 int populate_env_list(info_l *info)
 {
 	my_list *node = NULL;
