@@ -17,11 +17,11 @@ ssize_t input_buf(info_l *info, char **buf, size_t *len)
 
 		free(*buf);
 		*buf = NULL;
-		signal(SIGINT, sigintHandler);
+		signal(SIGINT, signintHandler);
 #if USE_GETLINE
 		r = getline(buf, &len_p, stdin);
 #else
-		r = _getline(info, buf, &len_p);
+		r = _getline1(info, buf, &len_p);
 #endif
 		if (r > 0)
 		{
@@ -43,11 +43,11 @@ ssize_t input_buf(info_l *info, char **buf, size_t *len)
 }
 
 /**
- * get_input - gets a line subtracted from the newline
+ * get_insert - gets a line subtracted from the newline
  * @info: parameter structures
  * Return: bytes read
  */
-ssize_t get_input(info_l *info)
+ssize_t get_insert(info_l *info)
 {
 	static char *buf;
 	static size_t i, j, len;
@@ -106,13 +106,13 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 }
 
 /**
- * _getline - gets the next line of input from STDIN
+ * _getline1 - gets the next line of input from STDIN
  * @info: parameter structures
  * @ptr: location of pointer to buffer, pre-allocated or NULL
  * @length: size of pre-allocated ptr buffer if not NULL
  * Return: s
  */
-int _getline(info_t *info, char **ptr, size_t *length)
+int _getline1(info_t *info, char **ptr, size_t *length)
 {
 	static char buf[READ_BUF_SIZE];
 	static size_t i, len;
@@ -152,12 +152,12 @@ int _getline(info_t *info, char **ptr, size_t *length)
 }
 
 /**
- * sigintHandler - blocks ctrl-C
+ * signintHandler - blocks ctrl-C
  * @sig_num: the signal number
  * by nexttosho
  * Return: void
  */
-void sigintHandler(__attribute__((unused))int sig_num)
+void signintHandler(__attribute__((unused))int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");

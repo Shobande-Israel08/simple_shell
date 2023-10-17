@@ -7,6 +7,7 @@
  * by nexttosho
  * Return: 0 on success, 1 on error
  */
+
 int main(int ac, char **av)
 {
 	info_l info[] = { INFO_INIT };
@@ -29,8 +30,8 @@ int main(int ac, char **av)
 				eputs1(av[0]);
 				eputs1(": 0: Can't open ");
 				eputs1(av[1]);
-				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
+				_eputcha1('\n');
+				_eputcha1(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);

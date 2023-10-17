@@ -14,19 +14,19 @@ void eputs1(char *str)
 		return;
 	while (str[i] != '\0')
 	{
-		_eputchar(str[i]);
+		_eputcha1(str[i]);
 		i++;
 	}
 }
 
 /**
- * _eputchar - input the character c to stderr
+ * _eputcha1 - input the character c to stderr
  * @c: The character to output
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
 
-int _eputchar(char c)
+int _eputcha1(char c)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
@@ -42,7 +42,7 @@ int _eputchar(char c)
 }
 
 /**
- * _putfd - input the character c to given fd
+ * _iput1fd - input the character c to given fd
  * @c: The character to output
  * @fd: The file descriptor to input to
  * Return:On success 1.
@@ -50,7 +50,7 @@ int _eputchar(char c)
  * by nexttosho
  */
 
-int _putfd(char c, int fd)
+int _iput1fd(char c, int fd)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
@@ -66,13 +66,13 @@ int _putfd(char c, int fd)
 }
 
 /**
- * _putsfd - outputs an input string
+ * _iput2fd - outputs an input string
  * @str:the string to output
  * @fd:the file descriptor to input to
  * Return:the number of chars put
  */
 
-int _putsfd(char *str, int fd)
+int _iput2fd(char *str, int fd)
 {
 	int i = 0;
 
@@ -80,7 +80,7 @@ int _putsfd(char *str, int fd)
 		return (0);
 	while (*str)
 	{
-		i += _putfd(*str++, fd);
+		i += _iput1fd(*str++, fd);
 	}
 	return (i);
 }

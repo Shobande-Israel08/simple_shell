@@ -35,7 +35,7 @@ char *getenv1(info_l *info, const char *name)
 }
 
 /**
- * _mysetenv - Initiate a new environ var,
+ * mysetenv1 - Initiate a new environ var,
  *             or modify an existing one
  * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.

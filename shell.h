@@ -117,16 +117,16 @@ int find_builtin(info_l *);
 void find_cmd(info_l *);
 void fork_cmd(info_l *);
 
-int is_cmd(info_l *, char *);
-char *dup_chars(char *, int, int);
-char *find_path(info_l *, char *, char *);
+int i_cmd(info_l *, char *);
+char *dap_chars(char *, int, int);
+char *phind_path(info_l *, char *, char *);
 
 int loophsh(char **);
 
 void eputs1(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+int _eputcha1(char);
+int _iput1fd(char c, int fd);
+int _iput2fd(char *str, int fd);
 
 int _strlen(char *);
 int _strcmp(char *, char *);
@@ -138,9 +138,9 @@ char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
+char *_strancpy(char *, char *, int);
+char *_strancat(char *, char *, int);
+char *_stranchr(char *, char);
 
 
 char **strtow(char *, char *);
@@ -161,25 +161,25 @@ int alpha1(int);
 int inta(char *);
 
 
-int _erratoi(char *);
-void print_error(info_l *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+int _erra1(char *);
+void outprint_error(info_l *, char *);
+int print_p(int, int);
+char *number_changer(long int, int, int);
+void comments_removal(char *);
 
 
-int mylive(info_l *);
-int mydisk(info_l *);
-int myhelp(info_l *);
+int _myquit(info_l *);
+int _mydisk(info_l *);
+int _myhelp(info_l *);
 
 
 int histo1(info_l *);
-int _myalias(info_l *);
+int _newalias(info_l *);
 
 
-ssize_t get_input(info_l *);
-int _getline(info_l *, char **, size_t *);
-void sigintHandler(int);
+ssize_t get_insert(info_l *);
+int _getline1(info_l *, char **, size_t *);
+void signintHandle(int);
 
 
 void clear_info(info_l *);

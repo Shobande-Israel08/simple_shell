@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * mylive – Leaves the shell
- * @info: Structure possess potential arguments.Used to maintain
+ * _myquit – leaves the shell
+ * @info: Structure possess potential arguments.Used to maintian
  * constant function prototype.
  * Return: leaves with a given exit status
  * (0) if info.argv[0] != "exit"
  */
-int mylive(info_l *info)
+int _myquit(info_l *info)
 {
 	int exitcheck;
 
@@ -30,12 +30,12 @@ int mylive(info_l *info)
 }
 
 /**
- * mydisk - Alters the current directory of the process
+ * _mydisk - Alters the current directory of the process
  * @info: Structure possess potential arguments.Used to maintain
  * constant function prototype.
  * Return: Always 0
  */
-int mydisk(info_l *info)
+int _mydisk(info_l *info)
 {
 	char *x, *dir, buffer[1024];
 	int chdir_ret;
@@ -80,12 +80,12 @@ int mydisk(info_l *info)
 }
 
 /**
- * myhelp - alters the current directory of the process
+ * _myhelp - Alters the current directory of the process
  * @info: Structure possess potential arguments.Used to maintain
  * constant function prototype.
  * Return: Always 0
  */
-int myhelp(info_l *info)
+int _myhelp(info_l *info)
 {
 	char **arg_array;
 

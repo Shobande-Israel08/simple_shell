@@ -17,8 +17,8 @@ int hsh(info_l *info, char **av)
 		clear_info(info);
 		if (interactive(info))
 			_puts("$ ");
-		_eputchar(BUF_FLUSH);
-		r = get_input(info);
+		_eputcha1(BUF_FLUSH);
+		r = get_insert(info);
 		if (r != -1)
 		{
 			set_info(info, av);
@@ -55,14 +55,14 @@ int find_builtin(info_l *info)
 {
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
-		{"exit", _mylive},
+		{"exit", _myquit},
 		{"env", myenv1},
-		{"help", myhelp},
+		{"help", _myhelp},
 		{"history", histo1},
 		{"setenv", mysetenv1},
 		{"unsetenv", myunsetenv1},
-		{"cd", mydisk},
-		{"alias", _myalias},
+		{"cd", _mydisk},
+		{"alias", _newalias},
 		{NULL, NULL}
 	};
 
@@ -98,7 +98,7 @@ void find_cmd(info_l *info)
 	if (!k)
 		return;
 
-	path = find_path(info, getenv1(info, "PATH="), info->argv[0]);
+	path = phind_path(info, getenv1(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -107,12 +107,12 @@ void find_cmd(info_l *info)
 	else
 	{
 		if ((interactive(info) || getenv1(info, "PATH=")
-					|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+					|| info->argv[0][0] == '/') && i_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
-			print_error(info, "not found\n");
+			outprint_error(info, "not found\n");
 		}
 	}
 }
@@ -152,7 +152,7 @@ void fork_cmd(info_l *info)
 		{
 			info->status = WEXITSTATUS(info->status);
 			if (info->status == 126)
-				print_error(info, "Permission denied\n");
+				outprint_error(info, "Permission denied\n");
 		}
 	}
 }

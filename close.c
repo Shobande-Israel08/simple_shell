@@ -1,16 +1,16 @@
 #include "shell.h"
 
 /**
- **_strncpy - copies a string from the function
+ **_strancpy - copies a string from the function
  *@dest:Is the destination of the string to be copied to
  *@src: the source string
  *@n: the number of characters to be copied
  *Return: the concatenated string
  */
-char *_strncpy(char *dest, char *src, int n)
+char *_strancpy(char *dest, char *src, int n)
 {
 	int i, j;
-	char *s = dest;
+	char *x = dest;
 
 	i = 0;
 	while (src[i] != '\0' && i < n - 1)
@@ -27,20 +27,20 @@ char *_strncpy(char *dest, char *src, int n)
 			j++;
 		}
 	}
-	return (s);
+	return (x);
 }
 
 /**
- **_strncat - concatenates two strings in the function
+ **_strancat - concatenates two strings in the function
  *@dest: the 1st string to concatenate
  *@src: the 2nd string to concatenate
  *@n: the number of bytes to be used in the function
  *Return: the concatenated string
  */
-char *_strncat(char *dest, char *src, int n)
+char *_strancat(char *dest, char *src, int n)
 {
 	int i, j;
-	char *s = dest;
+	char *x = dest;
 
 	i = 0;
 	j = 0;
@@ -54,22 +54,22 @@ char *_strncat(char *dest, char *src, int n)
 	}
 	if (j < n)
 		dest[i] = '\0';
-	return (s);
+	return (x);
 }
 
 /**
- **_strchr - it identifies a character in a string
- *@s: the string to be parsed into the function
+ **_stranchr - it identifies a character in a string
+ *@x: the string to be parsed into the function
  *@c: the character to look for in the function
- *Return: (s) a pointer to the memory area s
+ *Return: (x) a pointer to the memory area x
  * by nexttosho
  */
-char *_strchr(char *s, char c)
+char *_stranchr(char *x, char c)
 {
 	do {
-		if (*s == c)
-			return (s);
-	} while (*s++ != '\0');
+		if (*x == c)
+			return (x);
+	} while (*x++ != '\0');
 
 	return (NULL);
 }
