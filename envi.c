@@ -77,14 +77,14 @@ int myunsetenv1(info_l *info)
 }
 
 /**
- * populate_env_list - populates environ linked list
+ * env_pop_list - environ populates linked list
  * @info: Structure possesing potential arguments and
  * Used to maintain constant function prototype.
  * Return: Always 0
  * by nexttosho
  */
 
-int populate_env_list(info_l *info)
+int env_pop_list(info_l *info)
 {
 	my_list *node = NULL;
 	size_t i;

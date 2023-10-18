@@ -1,35 +1,31 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
+#define CONVERT_LOWERCASE       1
+#define CMD_NORM	0
+#define CMD_OR		1
+#define CMD_AND		2
+#define CMD_CHAIN	3
 
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
 
 
-#define CMD_NORM	0
-#define CMD_OR		1
-#define CMD_AND		2
-#define CMD_CHAIN	3
-
-
-#define CONVERT_LOWERCASE	1
 #define CONVERT_UNSIGNED	2
-
+#define HIST_MAX        4096
+#define HIST_FILE       ".simple_shell_history"
 
 #define USE_GETLINE 0
 #define USE_STRTOK 0
 
-#define HIST_FILE	".simple_shell_history"
-#define HIST_MAX	4096
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <limits.h>
 #include <fcntl.h>
 #include <errno.h>
@@ -152,7 +148,7 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
 
-int bfree(void **);
+int mfree1(void **);
 
 
 int interactive(info_l *);
@@ -182,16 +178,16 @@ int _getline1(info_l *, char **, size_t *);
 void signintHandle(int);
 
 
-void clear_info(info_l *);
-void set_info(info_l *, char **);
-void free_info(info_l *, int);
+void fine_info(info_l *);
+void st_info(info_l *, char **);
+void free1_info(info_l *, int);
 
 
 char *getenv1(info_l *, const char *);
 int myenv1(info_l *);
 int mysetenv1(info_l *);
 int myunsetenv1(info_l *);
-int populate_env_list(info_l *);
+int env_pop_list(info_l *);
 
 
 char **get_environ(info_l *);
@@ -199,11 +195,11 @@ int _unsetenv(info_l *, char *);
 int _setenv(info_l *, char *, char *);
 
 
-char *get_history_file(info_l *info);
-int write_history(info_l *info);
-int read_history(info_l *info);
-int build_history_list(info_l *info, char *buf, int linecount);
-int renumber_history(info_l *info);
+char *take_histo_file(info_l *info);
+int pen_histo(info_l *info);
+int rd_histo(info_l *info);
+int create_histo_list(info_l *info, char *buf, int linecount);
+int renum_histo(info_l *info);
 
 
 my_list *add_node(my_list **, const char *, int);

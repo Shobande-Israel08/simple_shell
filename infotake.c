@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * clear_info - initiates info_t structures
+ * fine_info - initiates info_t structures
  * @info: structures location
  */
-void clear_info(info_l *info)
+void fine_info(info_l *info)
 {
 	info->arg = NULL;
 	info->argv = NULL;
@@ -13,11 +13,11 @@ void clear_info(info_l *info)
 }
 
 /**
- * set_info - initiates info_t structures
+ * st_info - initiates info_t structures
  * @info: structures location
  * @av: argument vector
  */
-void set_info(info_l *info, char **av)
+void st_info(info_l *info, char **av)
 {
 	int i = 0;
 
@@ -44,12 +44,12 @@ void set_info(info_l *info, char **av)
 }
 
 /**
- * free_info - frees info_t structures fields
+ * free1_info - frees info_t structures fields
  * @info: structures location
  * @all: true if freeing all fields
  * by nexttosho
  */
-void free_info(info_l *info, int all)
+void free1_info(info_l *info, int all)
 {
 	ffree(info->argv);
 	info->argv = NULL;
@@ -66,7 +66,7 @@ void free_info(info_l *info, int all)
 			free_list(&(info->alias));
 		ffree(info->environ);
 			info->environ = NULL;
-		bfree((void **)info->cmd_buf);
+		mfree1((void **)info->cmd_buf);
 		if (info->readfd > 2)
 			close(info->readfd);
 		_putchar(BUF_FLUSH);

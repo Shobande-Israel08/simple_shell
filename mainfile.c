@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * main – point to enter from the function
+ * main – entry point to the function
  * @ac: Is an arguements count
  * @av: Is an arguements vector
  * by nexttosho
- * Return: 0 on success, 1 on error
+ * Return: 1 on error and 0 on success
  */
 
 int main(int ac, char **av)
@@ -38,8 +38,8 @@ int main(int ac, char **av)
 		}
 		info->readfd = fd;
 	}
-	populate_env_list(info);
-	read_history(info);
+	env_pop_list(info);
+	rd_histo(info);
 	hsh(info, av);
 	return (EXIT_SUCCESS);
 }
