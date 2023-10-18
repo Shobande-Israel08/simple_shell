@@ -39,11 +39,11 @@ extern char **environ;
  * @str:the string
  * @next:the next node pointer
  */
-typedef struct mystr
+typedef struct liststr
 {
 	int num;
 	char *str;
-	struct mystr *next;
+	struct liststr *next;
 } my_list;
 
 /**
@@ -124,22 +124,22 @@ int _eputcha1(char);
 int _iput1fd(char c, int fd);
 int _iput2fd(char *str, int fd);
 
-int _strlen(char *);
-int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
+int _stranlen(char *);
+int _strancmp(char *, char *);
+char *begin_with(const char *, const char *);
+char *_strancat(char *, char *);
 
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-void _puts(char *);
-int _putchar(char);
+char *_strancpy(char *, char *);
+char *_strandup(const char *);
+void _puts1(char *);
+int _putchar1(char);
 
 char *_strancpy(char *, char *, int);
 char *_strancat(char *, char *, int);
 char *_stranchr(char *, char);
 
 
-char **strtow(char *, char *);
+char **strtow1(char *, char *);
 char **strtow2(char *, char);
 
 
@@ -190,9 +190,9 @@ int myunsetenv1(info_l *);
 int env_pop_list(info_l *);
 
 
-char **get_environ(info_l *);
-int _unsetenv(info_l *, char *);
-int _setenv(info_l *, char *, char *);
+char **take_environ(info_l *);
+int _unsetenv1(info_l *, char *);
+int _setenv1(info_l *, char *, char *);
 
 
 char *take_histo_file(info_l *info);
