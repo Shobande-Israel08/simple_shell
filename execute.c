@@ -25,7 +25,7 @@ void execute_command(const char *command)
 	else if (child_pid == 0)
 
 	{
-	char *args[128]; 128 arguments(adjust as needed)
+	char *args[128];
 
 	int arg_count = 0;
 
