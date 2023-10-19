@@ -84,7 +84,7 @@ int main(int ac, char **argv)
 	size_t n = 0;
 	ssize_t nchars_read;
 	int num_tokens = 0;
-	/*int i;*/
+	int i;
 
 	(void)ac;
 	(void)prompt;

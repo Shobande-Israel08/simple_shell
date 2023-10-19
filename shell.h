@@ -16,7 +16,7 @@ char *get_location(char *command);
 
 void next_print(const char *message);
 void display_prompt(void);
-/*void read_command(char *command, size_t size);*/
+void read_command(char *command, size_t size);
 void execute_command(const char *command);
 
 #endif /* SHELL_H */
