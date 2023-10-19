@@ -7,6 +7,12 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+void execmd(char **argv);
+char *get_location(char *command);
 
 void next_print(const char *message);
 void display_prompt(void);

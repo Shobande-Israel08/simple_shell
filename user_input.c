@@ -1,16 +1,13 @@
 #include "shell.h"
 
 /**
- * read_command - Reads a command from standard input
- * @command: The buffer where the command will be stored
- * @size: The maximum size to be read
+ * read_command - From standard input,it reads a command
+ * @command: it is buffer where the command will be stored
+ * @size: It is the maximum size to be read
  *
- * This function reads a command from standard input using fgets.
- * If fgets returns NULL, the function checks if the end of the
- * file has been reached. If so, it prints a newline and exits
- * with success. Otherwise, it prints an error message and exits
- * with failure. The function also removes the trailing newline
- * from the command read.
+ * From standard input using fgets,this function reads the command
+ * The function checks if the end of the thus if the fgets is NULL
+ * file has been reached.
  */
 void read_command(char *command, size_t size)
 {

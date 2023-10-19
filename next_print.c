@@ -2,9 +2,9 @@
 
 /**
  * next_print - Prints a message to standard output
- * @message: The message to be printed
+ * @message: Thats the message to be printed
  *
- * This function takes a string message and writes it to the standard output.
+ * This function takes in a string from the standard outpute.
  * It uses the write function to achieve this.
  */
 

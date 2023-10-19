@@ -1,15 +1,13 @@
 #include "shell.h"
 
 /**
- * execute_command - Execute a shell command
- * @command: The command to be executed
+ * execute_command - Execute a command for shell
+ * @command: The shell command that is  to be executed
  *
- * This function creates a child process using fork, parses the command
- * into its executable name and arguments, and then uses execvp to
- * replace the current process image with the new command. If the command
- * fails to execute, an error message is printed and the function exits
- * with a failure status. The parent process waits for the child to finish
- * before returning.
+ * The function provided creates a child process using fork, and parses
+ * the command into its arguments, and then uses execvp to
+ * replace the current process image with the new command.
+ * An error message is printed if it fails to execute
  */
 
 void execute_command(const char *command)

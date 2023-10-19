@@ -1,14 +1,13 @@
 #include "shell.h"
 
 /**
- * main - Main entry point for the shell program
+ * main - Main entry point for the my shell program
  *
- * This function continuously runs a loop that displays a prompt,
- * reads a command from the user, and executes the command. This
- * loop continues indefinitely until the program is manually exited.
+ * It displays a prompt and continuously run a loop and
+ * reads a command from the user, and executes the command
  *
- * Return: This function does not have a return value because it is
- * designed to run indefinitely.
+ * Return: it is designed to run indefinitely therefore no return
+ * value.
  */
 int main(void)
 {
