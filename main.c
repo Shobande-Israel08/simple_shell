@@ -1,117 +1,121 @@
 #include "shell.h"
 
-
 /**
- * read_command - Reads the command from the user inpute
- * @lineptr: The buffer where the command will be stored
- * @n: The maximum size to be read from the function
- *
- * The function prints an error message and returns -1.
- * If getline is -1
- * Return: The number of characters read, or -1 if an error occurred
+ * main - main entry to initialize the variables
+ * @argc: number of argument count
+ * @argv: values for argument vector
+ * @env: count of values taken from command
+ * Return: zero on succes.
  */
-ssize_t read_command(char **lineptr, size_t *n)
+int main(int argc, char *argv[], char *env[])
 {
-	 ssize_t nchars_read;
-	printf("myshell$");
-	nchars_read = getline(lineptr, n, stdin);
+	data_of_program data_struct = {NULL}, *data = &data_struct;
+	char *prompt = "";
 
-	if (nchars_read == -1)
+	inisialize_data(data, argc, argv, env);
+
+	signal(SIGINT, handle_ctrl_c);
+
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && argc == 1)
 	{
-	printf("Exiting shell....\n");
-	return (-1);
+		errno = 2;
+		prompt = PROMPT_MSG;
 	}
-
-	return (nchars_read);
-}
-
-/**
- * process_command - Processes the command read from the user inpute
- * @lineptr: Thats the buffer where the command was stored
- * @lineptr_copy: A copy of the command from the user
- * @num_tokens: Thats the number of tokens in the command
- * @argv: The arguments for the command from user inpute
- * Return: 0 if successful, -1 otherwise
- */
-int process_command(char *lineptr, char *lineptr_copy,
-		int num_tokens, char **argv)
-{
-	char *token;
-	int i;
-
-	token = strtok(lineptr, " \n");
-
-	while (token != NULL)
-	{
-	num_tokens++;
-	token = strtok(NULL, " \n");
-	}
-	num_tokens++;
-
-	argv = malloc(sizeof(char *) * num_tokens);
-
-	token = strtok(lineptr_copy, " \n");
-
-	for (i = 0; token != NULL; i++)
-	{
-	argv[i] = malloc(sizeof(char) * strlen(token));
-	strcpy(argv[i], token);
-
-	token = strtok(NULL, " \n");
-	}
-	argv[i] = NULL;
-
-	execmd(argv);
-
+	errno = 0;
+	sisi(prompt, data);
 	return (0);
 }
 
 /**
- * main - Main entry point for my shell program
- * @ac: The number of arguments for user inpute
- * @argv: The arguments for the command
- * When the function displays a prompt,
- * It reads a command from the user.
- * The loop continues indefinitely till the getline function fails
- * or user uses CTRL + D.
- *
- * Return: 0 if successful, -1 otherwise
+ * handle_ctrl_c - display prompt in a new line
+ * when is signaled for  (ctrl + c) forward to the shell
+ * @UNUSED: another option of the prototype
  */
-int main(int ac, char **argv)
+void handle_ctrl_c(int opr UNUSED)
 {
-	char *prompt = "myshell$";
-	char *lineptr = NULL, *lineptr_copy = NULL;
-	size_t n = 0;
-	ssize_t nchars_read;
-	int num_tokens = 0;
-	int i;
+	_print("\n");
+	_print(PROMPT_MSG);
+}
 
-	(void)ac;
-	(void)prompt;
+/**
+ * inisialize_data - initialize the data struct for the shell
+ * @data: is a pointer to the data struct
+ * @argv: argument array to be parsed
+ * @env: parsed environ to be send
+ * @argc: received value for argument count
+ */
+void inisialize_data(data_of_program *data, int argc, char *argv[], char **env)
+{
+	int e = 0;
 
-	while (1)
+	data->program_name = argv[0];
+	data->input_line = NULL;
+	data->command_name = NULL;
+	data->exec_counter = 0;
+
+	if (argc == 1)
+		data->file_descriptor = STDIN_FILENO;
+	else
 	{
-	nchars_read = read_command(&lineptr, &n);
-
-	if (nchars_read == -1)
+		data->file_descriptor = open(argv[1], O_RDONLY);
+		if (data->file_descriptor == -1)
+		{
+			_printe(data->program_name);
+			_printe(": 0: Can't open ");
+			_printe(argv[1]);
+			_printe("\n");
+			exit(127);
+		}
+	}
+	data->tokens = NULL;
+	data->env = malloc(sizeof(char *) * 50);
+	if (env)
 	{
-		return (-1);
+		for (; env[e]; e++)
+		{
+			data->env[e] = str_duplicate(env[e]);
+		}
 	}
+	data->env[e] = NULL;
+	env = data->env;
 
-	lineptr_copy = malloc(sizeof(char) * nchars_read);
-	if (lineptr_copy == NULL)
+	data->alias_list = malloc(sizeof(char *) * 20);
+	for (e = 0; e < 20; e++)
 	{
-		perror("tsh: memory allocation error");
-		return (-1);
+		data->alias_list[e] = NULL;
 	}
+}
+/**
+ * sisi - shows the prompt for infinite loop
+ * @prompt: the printed prompt to be showed
+ * @data: infinite loop for the prompt
+ */
+void sisi(char *prompt, data_of_program *data)
+{
+	int error_code = 0, string_len = 0;
 
-	strcpy(lineptr_copy, lineptr);
+	while (++(data->exec_counter))
+	{
+		_print(prompt);
+		error_code = string_len = _getline(data);
 
-	process_command(lineptr, lineptr_copy, num_tokens, argv);
+		if (error_code == EOF)
+		{
+			free_all_data(data);
+			exit(errno);
+		}
+		if (string_len >= 1)
+		{
+			expand_alias(data);
+			expand_variables(data);
+			tokenize(data);
+			if (data->tokens[0])
+			{
+				error_code = execute(data);
+				if (error_code != 0)
+					_print_error(error_code, data);
+			}
+			free_recurrent_data(data);
+		}
 	}
-
-	free(lineptr_copy);
-	free(lineptr);
-
-	return (0);
 }
